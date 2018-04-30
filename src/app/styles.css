@@ -1,0 +1,24 @@
+
+/* You can add global styles to this file, and also import other style files */
+main{
+  padding: 0 1em ;
+}
+
+body {
+	font-family: Roboto, Arial, helvetica, sans-serif;
+	line-height: 1.4;
+}
+
+.vs-1 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.vs-5 {
+  margin-top: 5em;
+  margin-bottom: 5em;
+}
+
+.clickable{
+  cursor: pointer;
+}

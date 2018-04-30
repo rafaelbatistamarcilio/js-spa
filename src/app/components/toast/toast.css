@@ -1,0 +1,143 @@
+/* TOAST */
+.toast {
+    visibility: hidden;
+    /* Hidden by default. Visible on click */
+    min-width: 250px;
+    /* Set a default minimum width */
+    margin-left: -125px;
+    /* Divide value of min-width by 2 */
+    background-color: #333;
+    /* Black background color */
+    color: #fff;
+    /* White text color */
+    text-align: center;
+    /* Centered text */
+    border-radius: 2px;
+    /* Rounded borders */
+    padding: 16px;
+    /* Padding */
+    position: fixed;
+    /* Sit on top of the screen */
+    z-index: 999999;
+    /* Add a z-index if needed */
+    right: 5%;
+    /* Center the snackbar */
+    top: 30px;
+    /* 30px from the bottom */
+    opacity: 0.85
+  }
+  
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  
+  .toast.show {
+    visibility: visible;
+    /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+  However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  .toast.show.error {
+    background-color: #FF5151;
+    /* Black background color */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 5.5s;
+    animation: fadein 0.5s, fadeout 0.5s 5.5s;
+  }
+  
+  .toast.show.warnig {
+    background-color: #FF943C;
+    /* Black background color */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+  }
+  
+  .toast.show.info {
+    background-color: #6D91E3;
+    /* Black background color */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
+    animation: fadein 0.5s, fadeout 0.5s 3.5s;
+  }
+  
+  /* Animations to fade the snackbar in and out */
+  
+  @-webkit-keyframes fadein {
+    from {
+        top: 0;
+        opacity: 0.85;
+    }
+    to {
+        top: 30px;
+        opacity: 0.85;
+    }
+  }
+  
+  @keyframes fadein {
+    from {
+        top: 0;
+        opacity: 0.85;
+    }
+    to {
+        bottotopm: 30px;
+        opacity: 0.85;
+    }
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {
+        top: 30px;
+        opacity: 0.85;
+    }
+    to {
+        top: 0;
+        opacity: 0.85;
+    }
+  }
+  
+  @keyframes fadeout {
+    from {
+        top: 30px;
+        opacity: 0.85;
+    }
+    to {
+        top: 0;
+        opacity: 0.85;
+    }
+  }
+  
+  .toast-close {
+    position: relative;
+    top: -8px;
+    display: inline-block;
+    float: right;
+    opacity: 0.3;
+    cursor: pointer;
+    content: ' ';
+    width: 32px;
+    height: 32px;
+  }
+  
+  .toast-close:hover {
+    opacity: 1;
+  }
+  
+  .toast-close:before,
+  .toast-close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  
+  .toast-close:before {
+    transform: rotate(45deg);
+    cursor: pointer;
+  }
+  
+  .toast-close:after {
+    transform: rotate(-45deg);
+    cursor: pointer;
+  }
+  /* TOAST - END */

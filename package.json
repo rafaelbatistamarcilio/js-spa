@@ -1,0 +1,35 @@
+{
+  "name": "fs-express",
+  "version": "1.0.0",
+  "description": "exemplo de aplicação fullstack com o framework expressjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm run dev",
+    "start-prod": "npm run build && hs dist/",
+    "build": "webpack --mode production  --config webpack.conf.js",
+    "dev": "webpack --mode development  --config webpack.conf.js && hs dist/",
+    "test": "test"
+  },
+  "author": "rafael marcilio",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.5",
+    "@webcomponents/webcomponentsjs": "^1.2.0",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^4.1.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
+    "whatwg-fetch": "^2.0.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "0.1.19",
+    "copy-webpack-plugin": "4.5.1",
+    "css-loader": "^0.28.11",
+    "style-loader": "^0.21.0",
+    "webpack": "4.6.0",
+    "webpack-cli": "2.0.15"
+  }
+}
