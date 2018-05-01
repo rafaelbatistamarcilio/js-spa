@@ -1,6 +1,12 @@
-import { RouterService } from "./router.service";
-import { AppComponents } from "../app.components";
-import { RouterComponent } from "./router.component";
+import {
+    RouterService
+} from "./router.service";
+import {
+    AppComponents
+} from "../app.components";
+import {
+    RouterComponent
+} from "./router.component";
 
 export class AppModule {
 
@@ -13,9 +19,11 @@ export class AppModule {
     }
 
     registerComponents() {
-        window.customElements.define( 'app-router', RouterComponent);
-        AppComponents.getComponents().forEach( component => {
-            window.customElements.define( component.name, component.class);
-        });
+        window.onload = () => {
+            window.customElements.define('app-router', RouterComponent);
+            AppComponents.getComponents().forEach(component => {
+                window.customElements.define(component.name, component.class);
+            });
+        };
     }
 }

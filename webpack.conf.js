@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin =  require('uglifyjs-webpack-plugin');
 
 const webpack_rules = [{
     test: /\.css$/,
@@ -15,8 +16,7 @@ const webpack_rules = [{
 }];
 
 const webpackOption = {
-    entry: {
-        vendor: [
+    entry:  [
             'babel-polyfill',
             'whatwg-fetch',
             'jquery',
@@ -26,27 +26,14 @@ const webpackOption = {
             '@fortawesome/fontawesome/styles.css',
             '@fortawesome/fontawesome',
             '@webcomponents/webcomponentsjs/custom-elements-es5-adapter',
-            '@webcomponents/webcomponentsjs/webcomponents-hi-sd-ce'
-        ],
-        app: "./src/index.js"
-    },
+            '@webcomponents/webcomponentsjs/webcomponents-hi-sd-ce',
+            '@webcomponents/webcomponentsjs/webcomponents-lite',
+            "./src/index.js"
+    ],
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "js/[name].js",
+        filename: "js/app.js",
     },
-    // optimization: {
-    //     splitChunks: {
-    //       cacheGroups: {
-    //         vendor: {
-    //           chunks: 'initial',
-    //           name: 'vendor',
-    //           test: 'vendor',
-    //           enforce: true
-    //         },
-    //       }
-    //     },
-    //     runtimeChunk: true
-    //   },
     module: {
         rules: webpack_rules
     },
@@ -67,7 +54,11 @@ const webpackOption = {
                 to: './components',
                 flatten: true
             }
-        ])
+        ]),
+        new UglifyJsPlugin({
+            test: /\.js($|\?)/i,
+            extractComments:true
+        })
     ]
 };
 let babelLoader = {
