@@ -37,4 +37,44 @@ export class AppRouting {
 
 <h2><b>Components</b></h2>
 
-<p> To add a new route to your project, just add a new entry on the AppRouting class </p>
+<p> First create an html file that will be used as the component template</p>
+
+```html
+<!-- my-component-template.html -->
+<div >
+    <button id="my-btn"> Action from component </button>
+</div>
+<div >
+    <p id="my-text"> </p>
+</div>
+```
+
+<p> To create a new component you just need to create a ES6 JavaScript class extending BaseComponent </p>
+
+```javascript
+//my.component.js
+
+import {BaseComponent} from './path/to/base.component'
+
+export class MyComponent extends BaseComponent {
+
+    constructor() {
+        super('my-component-template'); // pass the template name on the super constructor
+    }
+
+    onInit(){
+        this.mapActions();
+    }
+
+    mapActions(){
+        document.getElementById('my-btn').addEventListener('click', ()=> this.myMethod() );
+        //or using JQuery $('#my-btn').click( ()=> this.myMethod() );
+    }
+    
+    myMethod(){
+        document.getElementById('my-text').innerHTML = 'Hello World!';
+        //or using JQuery $('#my-text').text( 'Hello World!' );
+    }
+}
+
+```
