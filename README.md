@@ -155,7 +155,7 @@ export class ChildComponent extends BaseComponent {
 
 <p> If you take a look at BaseComponent you will see that all components that extends BaseComponent need to pass the template name for the BaseComponent constructor. That occurs because the template are loaded via HTTP request. </p>
 
-p> Components made to be iterated in a loop can't have your template loaded via http because that demands too much time. </p>
+<p> Components made to be iterated in a loop can't have your template loaded via http because that demands too much time. </p>
 
 <p> So what you need to do is not extends BaseComponent and declare the component template via HTML string like in the next example: </p>
 
@@ -180,7 +180,7 @@ export class LoopItemComponent extends HTMLElement{
     }
 
     /**
-     * create a instance of the compoent with them properties filed
+     * create a instance of the compoent with them properties filled
      * @param {{id:number, description: string}} itemData 
      * @returns {ListItemComponent}
      */
