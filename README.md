@@ -62,6 +62,7 @@ export class MyComponent extends BaseComponent {
         super('my-component-template'); // pass the template name on the super constructor
     }
 
+    /** onInit is executed after template has been loaded */
     onInit(){
         this.mapActions();
     }
@@ -95,6 +96,58 @@ export class AppComponents {
 }
 ```
 
+<h2><b>Comunication between Components</b></h2>
+
+<p> Communication  between native web components are made via events </p>
+
+```javascript
+//parent.component.js
+export class ParentComponent extends BaseComponent{
+    constructor() {
+        super('parent-template'); 
+    }
+
+    /** onInit is executed after template has been loaded */
+    onInit(){
+        this.mapActions();
+    }
+
+    mapActions() {
+        //send event to child component
+        this.send( 'event-name-listened-by-child-component', {message:'hello'} );
+                
+        document.addEventListener('event-name-listened-by-parent-component' , (event)=> {
+            const eventData = event.detail; 
+            console.log(eventData.message); //print hello world
+        });
+    }
+}
+
+//child.component.js
+export class ParentComponent extends BaseComponent {
+    constructor() {
+        super('child-template'); 
+    }
+
+    /** onInit is executed after template has been loaded */
+    onInit(){
+        this.mapActions();
+    }
+
+    mapActions() {
+        //send event to child component
+        this.send( 'event-name-listened-by-child-component', {data:'hello'} );
+                
+        document.addEventListener('event-name-listened-by-child-component' , (event)=>{
+            console.log(event.message); // print hello
+            const eventData = event.detail;
+            eventData.message += ' world';
+            this.send( 'event-name-listened-by-parent-component', eventData );
+        });
+    }
+}
+
+```
 
 <h2><b>Services</b></h2>
 
