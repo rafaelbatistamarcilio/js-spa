@@ -4,12 +4,12 @@
         <form id="event-form">
             <div id="name-group" class="form-group" >
                 <label for="name">Name: </label>
-                <input id="name" type="text" class="form-control" app-input app-max-size="10">
+                <input app-input app-max-size="10" app-required id="name" type="text" class="form-control" >
                 <div id="name-feedback" class="invalid-feedback">  </div>
             </div>
             <div id="email-group" class="form-group">
                 <label for="email">Email</label>
-                <input id="email" type="email" class="form-control" app-input app-email>
+                <input app-input app-email app-required id="email" type="email" class="form-control" >
                 <div  id="email-feedback" class="invalid-feedback">  </div>
             </div>
         </form>

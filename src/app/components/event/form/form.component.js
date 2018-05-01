@@ -13,11 +13,12 @@ export class FormComponent extends BaseComponent {
     }
 
     mapActions(){
+        this.formValidatinService.whatchInputs('event-form');
         this.onSubmit();
     }
 
     onSubmit() {
-        document.addEventListener('FormComponent.onSubmit', (event)=> {
+        this.addEventListener('FormComponent.onSubmit', (event)=> {
             if( this.formValidatinService.isFormValid('event-form') ){
                 this.sendFormData();
             }
@@ -29,6 +30,7 @@ export class FormComponent extends BaseComponent {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value
         }
+
         this.send('FormComponent.sendFormData', formData );    
     }
 }

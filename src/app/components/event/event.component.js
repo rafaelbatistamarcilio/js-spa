@@ -12,9 +12,10 @@ export class EventComponent extends BaseComponent {
     }
 
     mapActions(){
-        $('#btn-send').click( ()=> this.send('FormComponent.onSubmit') );
+        $('#btn-send').click( ()=>  this.sedToElementById('my-form', 'FormComponent.onSubmit') );
         
-        document.addEventListener('FormComponent.sendFormData', (event)=> {
+        const form = document.getElementById('my-form');
+        form.addEventListener('FormComponent.sendFormData', (event)=> {
             document.getElementById('form-data').innerHTML = 'Data from child component: ' + JSON.stringify(event.detail);
         });
     }
