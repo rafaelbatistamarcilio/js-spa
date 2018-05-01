@@ -441,3 +441,4 @@ export class ValidatorRepository {
     }
 }
 ```
+<p> <b> IMPORTANT! </b>: your custom validator must have the method validate that receives 2 params, first the input value, second the validator value </p>
