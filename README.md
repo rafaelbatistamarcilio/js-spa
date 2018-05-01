@@ -461,9 +461,9 @@ export class ValidatorRepository {
 
 
 
-<h2><b> Comunication with external API via HTTP calls</b></h2>
+<h2><b> Communication with external API via HTTP calls</b></h2>
 
-<p> To comunicate with some external API via HTTP calls just use the HttpService </p>
+<p> To communicate with some external API via HTTP calls just use the HttpService </p>
 
 ```javascript
 //my.component.js
