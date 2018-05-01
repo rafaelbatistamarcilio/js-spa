@@ -2,7 +2,7 @@
 
 <p>Created using Angular concepts</p>
 <p>ES6 classes</p>
-<p>Compatibility with old browsers using polyfill</p>
+<p>Compatibility with old browsers using babel and polyfill</p>
 
 <h2><b>Instalation</b></h2>
 
@@ -10,6 +10,7 @@
 <p> cd my-project  </p>
 <p> git pull https://github.com/rafaelbatistamarcilio/js-spa.git . </p>
 <p> npm i </p>
+<p> npm start </p>
 
 <h2><b>Routing</b></h2>
 
@@ -388,3 +389,55 @@ export class MyComponent extends BaseComponent {
 }
 ```
 
+<h2><b>Validators</b></h2>
+
+<p> Validators are classes that hold some input validation logic and returns a object with a flag that say if the input is valid or not and a feedback message </p>
+
+```javascript
+//max-size.validator.js
+export class MaxSizeValidator {
+
+    /**
+     * validate if the given value is lower
+     * @param { string } value 
+     * @param { number } validator 
+     * @returns { isValid: boolean, message: string }
+     */
+    static validate( value , validator ) {
+        if(value.length < validator){
+            return { 
+                isValid: true, 
+                message: ''
+            }
+        } 
+
+        return {
+            isValid: false,
+            message: 'values must be lower than ' + validator
+        }
+    }
+}
+```
+
+<p> To register your custom validator, create a ES6 class like the MaxSizeValidator and register it on ValidatorRepository </p>
+
+```javascript
+//validator.repository.js
+import { MaxSizeValidator } from "./max-size.validator";
+import { MyCustomValidator } from "./path/to/my-custom.validator";
+
+export class ValidatorRepository {
+    /**
+     * @returns { Map< string, { validate: (value:string, validator:string) => { isValid: boolean, message: string }} > }
+     */
+    static getValidators() {
+        const validators = new Map();
+        validators.set('app-max-size', MaxSizeValidator);
+        
+        // app-my-validator is like you can call the validator on a form input
+        // <input app-input app-my-validator />
+        validators.set('app-my-validator', MyCustomValidator);
+        return validators;
+    }
+}
+```
