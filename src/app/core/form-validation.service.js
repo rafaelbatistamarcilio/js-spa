@@ -16,6 +16,29 @@ import { ValidatorRepository } from "./validators/validator.repository";
 export class FormValidationService {
 
     /**
+     * add a event listner for every form input with the propertie app-input
+     * when the user leave the input that will be validated
+     * be shure that every form input have the needed validator anothation 
+     * @see {ValidatorRepository}
+     * @param {string} formId 
+     * @returns {void}
+     */
+    whatchInputs(formId){
+        const form = document.getElementById(formId);
+
+        if(!form){
+            throw new Error("Form id: "+formId+" not found");
+        }
+
+        const inputs = form.querySelectorAll('[app-input]');
+
+        for(let index = 0; index < inputs.length; index++) {
+            const input = inputs.item(index);
+            input.addEventListener('blur', (event)=> this.isInputValid(event.target) );
+        }
+    }
+
+    /**
      * @param { string } formId 
      * @returns { boolean }
      */
