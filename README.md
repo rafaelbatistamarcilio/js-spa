@@ -97,6 +97,22 @@ export class AppComponents {
 }
 ```
 
+
+<h2><b>Use a component in another component template</b></h2>
+
+<p> If you want to use a component on another component template, just add the component tag on the parent component template </p>
+```html
+<!-- parent-template.html -->
+<div >
+    <button id="my-btn"> Action from component </button>
+</div>
+<div >
+    <!-- THE TEMPLATE OF MyCustomComponent WILL BE RENDERED HERE-->
+    <app-my-component></app-my-component>
+</div>
+```
+
+
 <h2><b>Communication  between Components</b></h2>
 
 <p> Communication  between native web components are made via events </p>
