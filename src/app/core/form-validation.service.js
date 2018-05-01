@@ -17,25 +17,30 @@ export class FormValidationService {
 
     /**
      * add a event listner for every form input with the propertie app-input
-     * when the user leave the input that will be validated
+     * when the user key up on the input that will be validated
      * be shure that every form input have the needed validator anothation 
      * @see {ValidatorRepository}
      * @param {string} formId 
      * @returns {void}
      */
-    whatchInputs(formId){
+    whatchInputs(formId) {
+        const inputs = this.getFormInputs(formId);
+        inputs.forEach( input => input.addEventListener('keyup', (event)=> this.isInputValid(event.target) )  );
+    }
+
+    /**
+     * @param {string} formId 
+     * @return { HTMLInputElement[] }
+     */
+    getFormInputs(formId) {
         const form = document.getElementById(formId);
 
         if(!form){
             throw new Error("Form id: "+formId+" not found");
         }
 
-        const inputs = form.querySelectorAll('[app-input]');
-
-        for(let index = 0; index < inputs.length; index++) {
-            const input = inputs.item(index);
-            input.addEventListener('blur', (event)=> this.isInputValid(event.target) );
-        }
+        const inputs = Array.from( form.querySelectorAll('[app-input]') );
+        return inputs;
     }
 
     /**
@@ -44,13 +49,14 @@ export class FormValidationService {
      */
     isFormValid(formId) {
         let isValid = true;
-        const inputs = document.getElementById(formId).querySelectorAll('[app-input]');
+        const inputs = this.getFormInputs(formId);
 
-        for(let index = 0; index < inputs.length ; index++){
-            if( !this.isInputValid( inputs.item(index) ) ){
+        inputs.forEach( input => { 
+            if( !this.isInputValid( input ) ){
                 isValid = false;
             }
-        }
+        });
+
         return isValid;
     }
 
@@ -59,22 +65,35 @@ export class FormValidationService {
      * @return { boolean }
      */
     isInputValid( input ) {
-        for( let index = 0; index < input.attributes.length ; index++ ){
-            const attribute = input.attributes.item(index);
-            if( ValidatorRepository.getValidators().has( attribute.name ) ) {
+        let inputState = true;
+        let message = '';
+        let results = [];
 
+        for( let index = 0; index < input.attributes.length ; index++ ) {
+
+            const attribute = input.attributes.item(index);
+
+            if( ValidatorRepository.getValidators().has( attribute.name ) ) {
                 const validator = ValidatorRepository.getValidators().get( attribute.name );
                 const result = validator.validate( input.value, attribute.value );
-
-                if( result.isValid ) {
-                    this.setAsValid(input, result.message );
-                    return true;
-                } else{
-                    this.setAsInvalid(input, result.message );
-                    return false;
-                }
+                results.push(result);
             }
         }
+
+        results.forEach( result => {            
+            if( !result.isValid ) {
+                inputState = false;
+                message = result.message;
+            }
+        })
+
+        if( inputState ) {
+            this.setAsValid(input, message );
+        } else{
+            this.setAsInvalid(input, message );
+        }
+
+        return inputState;
     }
 
     /**
@@ -83,7 +102,6 @@ export class FormValidationService {
      * @param { string } message 
      */
     setAsInvalid( input, message ){
-        input.classList.remove('is-valid');
         input.classList.add('is-invalid');
         this.setMessage( input, message );
     }
@@ -95,7 +113,6 @@ export class FormValidationService {
      */
     setAsValid(input, message){
         input.classList.remove('is-invalid');
-        input.classList.add('is-valid');
         this.setMessage( input, message );
     }
 

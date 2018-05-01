@@ -1,5 +1,5 @@
 
-export class EmailValidator {    
+export class RequiredValidator {
 
     /**
      * validate if the given value is lower
@@ -8,12 +8,10 @@ export class EmailValidator {
      * @returns { isValid: boolean, message: string }
      */
     static validate( value , validator ) {
-        if( value &&
-            value.length > 0 &&
-            value.indexOf('@') == -1 ){
+        if(value == null || value == undefined || value == ''){
             return { 
                 isValid: false, 
-                message: 'invalid e-mail'
+                message: 'required field'
             }
         } 
 
