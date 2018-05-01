@@ -113,18 +113,20 @@ export class ParentComponent extends BaseComponent{
     }
 
     mapActions() {
-        //send event to child component
-        this.send( 'event-name-listened-by-child-component', {message:'hello'} );
-                
+              
+        //listem for event 'event-name-listened-by-parent-component'
         document.addEventListener('event-name-listened-by-parent-component' , (event)=> {
             const eventData = event.detail; 
             console.log(eventData.message); //print hello world
         });
+        
+        //send event to child component
+        this.send( 'event-name-listened-by-child-component', {message:'hello'} );
     }
 }
 
 //child.component.js
-export class ParentComponent extends BaseComponent {
+export class ChildComponent extends BaseComponent {
     constructor() {
         super('child-template'); 
     }
@@ -135,13 +137,13 @@ export class ParentComponent extends BaseComponent {
     }
 
     mapActions() {
-        //send event to child component
-        this.send( 'event-name-listened-by-child-component', {data:'hello'} );
-                
+        //listem for event 'event-name-listened-by-child-component'
         document.addEventListener('event-name-listened-by-child-component' , (event)=>{
             console.log(event.message); // print hello
             const eventData = event.detail;
             eventData.message += ' world';
+            
+            //send data to parent component
             this.send( 'event-name-listened-by-parent-component', eventData );
         });
     }
