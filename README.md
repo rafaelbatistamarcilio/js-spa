@@ -78,3 +78,59 @@ export class MyComponent extends BaseComponent {
 }
 
 ```
+
+<p>Then register MyComponent in the file</p>
+
+```javascript
+//app.components.js
+export class AppComponents {
+    static getComponents() {
+        return [
+            {
+                name:'app-my-component',
+                class: MyComponent
+            }
+        ]
+    }
+}
+```
+
+
+<h2><b>Services</b></h2>
+
+<p> Services are just pure ES6 JavaScript classes that holds some reusable logic </p>
+
+```javascript
+//my.service.js
+export class MyService {
+    someMethod() {
+        const someVariable = // some logic
+        return someVariable;
+    }
+}
+
+//my.component.js
+
+import {MyService} from './path/to/my.service';
+
+export class MyComponent extends BaseComponent {
+
+    constructor() {
+        super('my-component-template'); 
+        this.myService = new MyService();
+    }
+
+    onInit(){
+        this.mapActions();
+    }
+
+    mapActions(){
+        $('#my-btn').click( ()=> this.myMethod() );
+    }
+    
+    myMethod(){
+        const text = this.myService.someMethod();
+        $('#my-text').text( text );
+    }
+}
+```
