@@ -291,3 +291,100 @@ export class MyComponent extends BaseComponent {
     }
 }
 ```
+
+<h2><b>Form validation</b></h2>
+
+<p> To make easy validate forms dynamically, use the FormValidationService </p>
+
+<p> If you have a form like that </p>
+
+```html
+<!-- my-component-template.html -->
+<form id="my-form">
+    <div class="form-group">
+        <label> Field 1: </label>
+        <input app-input app-required type="text" id="field-1" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label> Field 2: </label>
+        <input app-input app-max-size="5" type="text" id="field-2" class="form-control"/>
+    </div>
+    <div class="form-controll">
+        <button type="button" id="my-btn" > send </button>
+    </div>
+</form>
+```
+
+<p> Then you can validate your form easely like that :</p>
+
+```javascript
+
+//my.component.js
+
+import {FormValidationService} from './path/to/core/form-validation.service';
+
+export class MyComponent extends BaseComponent {
+
+    constructor() {
+        super('my-template'); 
+        this.formValidationService = new FormValidationService();
+    }
+
+    onInit(){
+        this.mapActions();
+    }
+
+    mapActions(){
+        $('#my-btn').click( ()=> this.validateForm() );
+    }
+    
+    validateForm() {
+        
+        if(!this.formValidationService.isFormValid('my-form')) {
+            console.log('FORM IS INVALID');
+            // if that happens, invalid fields will be marked as red
+        }
+    }
+}
+```
+
+<p> <b> IMPORTANT! </b>: just fields with the attribute "app-input" will be validated </p>
+
+<p> <b> IMPORTANT! </b>: just fields with some validator attribute like "app-required" will be validated. Don't worry, we will see more about validators on next section </p>
+
+<p> <b> IMPORTANT! </b>: to trigger form inputs validatin on blur event just call the method watchInputs like follow</p>
+
+```javascript
+
+//my.component.js
+
+import {FormValidationService} from './path/to/core/form-validation.service';
+
+export class MyComponent extends BaseComponent {
+
+    constructor() {
+        super('my-template'); 
+        this.formValidationService = new FormValidationService();
+    }
+
+    onInit(){
+        this.mapActions();
+    }
+
+    mapActions(){
+        //trigger input validation when input blur event is triggered
+        this.formValidationService.whatchInputs('my-form');
+        
+        $('#my-btn').click( ()=> this.validateForm() );
+    }
+    
+    validateForm() {
+        
+        if(!this.formValidationService.isFormValid('my-form')) {
+            console.log('FORM IS INVALID');
+            // if that happens, invalid fields will be marked as red
+        }
+    }
+}
+```
+
