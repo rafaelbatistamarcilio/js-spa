@@ -458,3 +458,36 @@ export class ValidatorRepository {
 }
 ```
 <p> <b> IMPORTANT! </b>: your custom validator must have the method validate that receives 2 params, first the input value, second the validator value </p>
+
+
+
+<h2><b> Comunication with external API via HTTP calls</b></h2>
+
+<p> To comunicate with some external API via HTTP calls just use the HttpService </p>
+
+```javascript
+//my.component.js
+
+import {HttpService} from './path/to/core/http.service';
+
+export class MyComponent extends BaseComponent {
+
+    constructor() {
+        super('my-template'); 
+        this.http = new HttpService();
+    }
+
+    onInit(){
+        this.someAsyncMethod();
+    }
+    
+    // IMPORTANT: await just works on async methods
+    async someAsyncMethod() {
+    
+        //use await to avoid then chais
+        //data
+        const responseData =  await this.http.get('some-api-url');
+                
+    }
+}
+```
