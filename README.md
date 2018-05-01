@@ -157,8 +157,8 @@ export class ChildComponent extends BaseComponent {
     mapActions() {
         //listem for event 'event-name-listened-by-child-component'
         document.addEventListener('event-name-listened-by-child-component' , (event)=>{
-            console.log(event.message); // print hello
             const eventData = event.detail;
+            console.log(eventData.message); // print hello
             eventData.message += ' world';
             
             //send data to parent component
