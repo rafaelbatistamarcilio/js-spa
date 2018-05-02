@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJsPlugin =  require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const webpack_rules = [];
@@ -30,18 +30,28 @@ let babelLoader = {
 
 webpack_rules.push(babelLoader);
 
+const htmlLoader = {
+    test: /\.(html)$/,
+    exclude: /node_modules/,
+    use: {
+        loader: 'html-loader'
+    }
+};
+
+webpack_rules.push(htmlLoader);
+
 const webpackOption = {
-    entry:  [
-            'babel-polyfill',
-            'whatwg-fetch',
-            '@webcomponents/webcomponentsjs/webcomponents-hi-sd-ce',
-            'jquery',
-            'popper.js',
-            'bootstrap',
-            'bootstrap/dist/css/bootstrap.min.css',
-            '@fortawesome/fontawesome/styles.css',
-            '@fortawesome/fontawesome',
-            "./src/index.js"
+    entry: [
+        'babel-polyfill',
+        'whatwg-fetch',
+        '@webcomponents/webcomponentsjs/webcomponents-hi-sd-ce',
+        'jquery',
+        'popper.js',
+        'bootstrap',
+        'bootstrap/dist/css/bootstrap.min.css',
+        '@fortawesome/fontawesome/styles.css',
+        '@fortawesome/fontawesome',
+        "./src/index.js"
     ],
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -56,19 +66,18 @@ const webpackOption = {
             jQuery: 'jquery'
         }),
         new CleanWebpackPlugin(['dist']),
-        new CopyWebpackPlugin([
-            {
+        new CopyWebpackPlugin([{
                 from: './src/app/favicon.ico'
             },
-            {
-                from: './src/app/components/**/*.html',
-                to: './components',
-                flatten: true
-            }
+            // {
+            //     from: './src/app/components/**/*.html',
+            //     to: './components',
+            //     flatten: true
+            // }
         ]),
         new UglifyJsPlugin({
             test: /\.js($|\?)/i,
-            extractComments:true
+            extractComments: true
         }),
         new HtmlWebpackPlugin({
             template: './src/app/index.html'

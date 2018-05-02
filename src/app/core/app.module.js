@@ -19,11 +19,9 @@ export class AppModule {
     }
 
     registerComponents() {
-        window.onload = () => {
-            window.customElements.define('app-router', RouterComponent);
-            AppComponents.getComponents().forEach(component => {
-                window.customElements.define(component.name, component.class);
-            });
-        };
+        AppComponents.getComponents().forEach(component => {
+            window.customElements.define(component.name, component.class);
+        });
+        window.customElements.define('app-router', RouterComponent);
     }
 }

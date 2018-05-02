@@ -1,18 +1,20 @@
 
 import { BaseComponent } from '../../core/base.component';
 
+import template from './event.html';
+
 export class EventComponent extends BaseComponent {
 
     constructor() {
-        super('event');
+        super(template);
     }
 
-    async onInit(){
+    onInit(){
         this.mapActions();
     }
 
     mapActions(){
-        $('#btn-send').click( ()=>  this.sedToElementById('my-form', 'FormComponent.onSubmit') );
+        $('#btn-send').click( ()=>  this.sendToElementById('my-form', 'FormComponent.onSubmit') );
         
         const form = document.getElementById('my-form');
         form.addEventListener('FormComponent.sendFormData', (event)=> {

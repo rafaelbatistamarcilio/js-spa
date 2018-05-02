@@ -1,10 +1,12 @@
 import { BaseComponent } from "../../core/base.component";
 import { RouterService } from "../../core/router.service";
 
+import template from './header.html';
+
 export class HeaderComponent  extends BaseComponent {
 
     constructor() {
-        super( 'header' );
+        super(template);
         this.router = new RouterService();
     }
 

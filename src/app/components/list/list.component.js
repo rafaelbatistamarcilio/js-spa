@@ -1,11 +1,12 @@
-import {
-    BaseComponent
-} from "../../core/base.component";
+import { BaseComponent } from "../../core/base.component";
 import { ListItemComponent } from "./list-item/list-item.component";
+import template from './list.html';
+
 
 export class ListComponent extends BaseComponent {
+
     constructor() {
-        super('list');
+        super(template);
         this.itens = [
             {
                 id: 1,
@@ -19,7 +20,7 @@ export class ListComponent extends BaseComponent {
                 id: 3,
                 description: "test item 3"
             }
-        ]
+        ];
     }
 
     onInit() {

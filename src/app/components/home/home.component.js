@@ -1,12 +1,14 @@
 import { BaseComponent } from "../../core/base.component";
 
+import template from './home.html';
+
 export class HomeComponent  extends BaseComponent {
 
-    constructor(){
-        super('home');     
+    constructor() {
+        super(template);
     }
 
-    async onInit(){
+    onInit(){
         this.mapActions();
     }
 

@@ -1,14 +1,16 @@
 import { BaseComponent } from "../../../core/base.component";
 import { FormValidationService } from "../../../core/form-validation.service";
 
+import template from './form.html';
+
 export class FormComponent extends BaseComponent {
 
     constructor() {
-        super('form');
+        super(template);
         this.formValidatinService = new FormValidationService();
     }
 
-    async onInit(){
+    onInit(){
         this.mapActions();
     }
 
