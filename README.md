@@ -2,7 +2,6 @@
 
 <p>Created using Angular concepts</p>
 <p>ES6 classes</p>
-<p>Compatibility with old browsers using babel and polyfill</p>
 
 <h2><b>Instalation</b></h2>
 
@@ -133,13 +132,14 @@ export class ParentComponent extends BaseComponent{
     mapActions() {
               
         //listem for event 'event-name-listened-by-parent-component'
-        document.addEventListener('event-name-listened-by-parent-component' , (event)=> {
+        const childComponentElement = document.getElementById('child-component-id-on-parent-template');
+        childComponentElement.addEventListener('event-name-listened-by-parent-component' , (event)=> {
             const eventData = event.detail; 
             console.log(eventData.message); //print hello world
         });
         
         //send event to child component
-        this.send( 'event-name-listened-by-child-component', {message:'hello'} );
+        this.sedToElementById('child-component-id-on-parent-template', 'event-name-listened-by-child-component', {message:'hello'} );
     }
 }
 
@@ -156,7 +156,7 @@ export class ChildComponent extends BaseComponent {
 
     mapActions() {
         //listem for event 'event-name-listened-by-child-component'
-        document.addEventListener('event-name-listened-by-child-component' , (event)=>{
+        this.addEventListener('event-name-listened-by-child-component' , (event)=>{
             const eventData = event.detail;
             console.log(eventData.message); // print hello
             eventData.message += ' world';
