@@ -55,11 +55,12 @@ export class AppRouting {
 //my.component.js
 
 import {BaseComponent} from './path/to/base.component'
+import temmplate from './path/to/my-component-template.html';
 
 export class MyComponent extends BaseComponent {
 
     constructor() {
-        super('my-component-template'); // pass the template name on the super constructor
+        super(temmplate); // pass the template to super constructor
     }
 
     /** onInit is executed after template has been loaded */
@@ -121,7 +122,7 @@ export class AppComponents {
 //parent.component.js
 export class ParentComponent extends BaseComponent{
     constructor() {
-        super('parent-template'); 
+        super(temmplate); 
     }
 
     /** onInit is executed after template has been loaded */
@@ -146,7 +147,7 @@ export class ParentComponent extends BaseComponent{
 //child.component.js
 export class ChildComponent extends BaseComponent {
     constructor() {
-        super('child-template'); 
+        super(temmplate); 
     }
 
     /** onInit is executed after template has been loaded */
@@ -171,11 +172,7 @@ export class ChildComponent extends BaseComponent {
 
 <h2><b>Loop a component to show some data </b></h2>
 
-<p> If you take a look at BaseComponent you will see that all components that extends BaseComponent need to pass the template name for the BaseComponent constructor. That occurs because the template are loaded via HTTP request. </p>
-
-<p> Components made to be iterated in a loop can't have your template loaded via http because that demands too much time. </p>
-
-<p> So what you need to do is not extends BaseComponent and declare the component template via HTML string like in the next example: </p>
+<p> To make easier declare properties on loop template, do not extends BaseComponent and declare the component template via HTML string like in the next example:</p>
 
 ```javascript
 //loop-item.component.js
