@@ -172,28 +172,24 @@ export class ChildComponent extends BaseComponent {
 
 <h2><b>Loop a component to show some data </b></h2>
 
-<p> To make easier declare properties on loop template, do not extends BaseComponent and declare the component template via HTML string like in the next example:</p>
+<p> To make easier declare properties on loop template, do not extends BaseComponent</p>
+<p> On component constructor set your template </p>
+
 
 ```javascript
 //loop-item.component.js
+
+import template from './path/to/template.html';
 export class LoopItemComponent extends HTMLElement{
     constructor(){
         super();
+        this.innerHTML = template;
     }
 
     connectedCallback() {
-        this.loadtemplate();
+        // do something you want when the component has been attached to DOM
     }
     
-    loadtemplate(){
-
-        this.innerHTML =`
-        <div >
-            <div > Item: ${ this.item_id } </div>
-            <div > Description: ${ this.description } </div>
-        </div>`;
-    }
-
     /**
      * create a instance of the compoent with them properties filled
      * @param {{id:number, description: string}} itemData 
@@ -206,24 +202,14 @@ export class LoopItemComponent extends HTMLElement{
     }
 
     setInfo(itemData){        
-        this.item_id = itemData.id;
-        this.description = itemData.description;
-    }
-
-    get item_id(){
-        return this.getAttribute('item_id');
-    }
-
-    set item_id(item_id){
-        this.setAttribute('item_id', item_id);
-    }
-
-    get description(){
-        return this.getAttribute('description');
-    }
-
-    set description(description){
-        this.setAttribute('description', description);
+        //let's suppose in your template you have the labels
+        //<label id="item_id_label"> </label>
+        //<label id="description_label"> </label>
+        
+        this.querySelector('#item_id_label').innerHTML = itemData.id;
+        this.querySelector('#description_label').innerHTML  = itemData.description;
+        
+        //the info needed to show on your component will be set
     }
 }
 
