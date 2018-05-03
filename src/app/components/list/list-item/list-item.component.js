@@ -1,25 +1,11 @@
 
+import template from './list-item.html';
+
 export class ListItemComponent extends HTMLElement {
 
     constructor(){
         super();
-    }
-
-    connectedCallback() {
-        this.loadtemplate();
-    }
-
-    /**
-     * how that component must to be iterated, fetch the template HTML
-     * is to lower, than we need to define the template via HTML string
-     */
-    loadtemplate(){
-
-        this.innerHTML =`
-        <div class="card vs-1">
-            <div class="card-header"> Item: ${ this.item_id } </div>
-            <div class="card-body"> Description: ${ this.description }</div>
-        </div>`;
+        this.innerHTML = template;
     }
 
     /**
@@ -34,23 +20,7 @@ export class ListItemComponent extends HTMLElement {
     }
 
     setInfo(itemData){        
-        this.item_id = itemData.id;
-        this.description = itemData.description;
-    }
-
-    get item_id(){
-        return this.getAttribute('item_id');
-    }
-
-    set item_id(item_id){
-        this.setAttribute('item_id', item_id);
-    }
-
-    get description(){
-        return this.getAttribute('description');
-    }
-
-    set description(description){
-        this.setAttribute('description', description);
+        this.querySelector('#item_id').innerHTML = itemData.id;
+        this.querySelector('#item_description').innerHTML = itemData.description;
     }
 }
