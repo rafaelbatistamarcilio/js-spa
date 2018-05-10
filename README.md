@@ -336,6 +336,7 @@ export class MyComponent extends BaseComponent {
     }
 
     mapActions(){
+        this.formValidationService.whatchInputs('my-form');//trigger input validation on keyup
         $('#my-btn').click( ()=> this.validateForm() );
     }
     
