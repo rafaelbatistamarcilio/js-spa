@@ -44,7 +44,7 @@ const webpackOption = {
     entry: [
         'babel-polyfill',
         'whatwg-fetch',
-        '@webcomponents/webcomponentsjs/webcomponents-hi-sd-ce',
+        '@webcomponents/webcomponentsjs/webcomponents-bundle',
         'jquery',
         'popper.js',
         'bootstrap',
