@@ -13,6 +13,6 @@ export class HomeComponent  extends BaseComponent {
     }
 
     mapActions(){
-        $('#btn-test').click( (event)=> alert('Alert called from component') );
+        $('#btn-test').click( ()=> alert('Alert called from component') );
     }
 }

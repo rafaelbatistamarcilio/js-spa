@@ -1,12 +1,5 @@
-import {
-    RouterService
-} from "./router.service";
-import {
-    AppComponents
-} from "../app.components";
-import {
-    RouterComponent
-} from "./router.component";
+import { RouterComponent } from "./router.component";
+import { AppComponents } from "../app.components";
 
 export class AppModule {
 

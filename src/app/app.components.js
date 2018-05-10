@@ -8,9 +8,9 @@ import { FormComponent } from "./components/event/form/form.component";
 
 /**
  * that class keep the components and tha names used on HTML to use than
- * ex: 
- *  [{ name: app-header, class: HeaderComponent}] 
- * 
+ * ex:
+ *  [{ name: app-header, class: HeaderComponent}]
+ *
  * on the HTML file you can use
  *  <app-header></app-header>
  */

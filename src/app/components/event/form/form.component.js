@@ -1,5 +1,9 @@
-import { BaseComponent } from "../../../core/base.component";
-import { FormValidationService } from "../../../core/form-validation.service";
+import {
+    BaseComponent
+} from "../../../core/base.component";
+import {
+    FormValidationService
+} from "../../../core/form-validation.service";
 
 import template from './form.html';
 
@@ -10,18 +14,18 @@ export class FormComponent extends BaseComponent {
         this.formValidatinService = new FormValidationService();
     }
 
-    onInit(){
+    onInit() {
         this.mapActions();
     }
 
-    mapActions(){
+    mapActions() {
         this.formValidatinService.whatchInputs('event-form');
         this.onSubmit();
     }
 
     onSubmit() {
-        this.addEventListener('FormComponent.onSubmit', (event)=> {
-            if( this.formValidatinService.isFormValid('event-form') ){
+        this.addEventListener('FormComponent.onSubmit', () => {
+            if (this.formValidatinService.isFormValid('event-form')) {
                 this.sendFormData();
             }
         });
@@ -33,6 +37,6 @@ export class FormComponent extends BaseComponent {
             email: document.getElementById('email').value
         }
 
-        this.send('FormComponent.sendFormData', formData );    
+        this.send('FormComponent.sendFormData', formData);
     }
 }

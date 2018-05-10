@@ -1,4 +1,3 @@
-import { AppRouting } from "../app.routing";
 import { RouterService } from "./router.service";
 
 export class RouterComponent  extends HTMLElement {

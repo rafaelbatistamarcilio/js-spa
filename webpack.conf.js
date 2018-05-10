@@ -69,11 +69,6 @@ const webpackOption = {
         new CopyWebpackPlugin([{
                 from: './src/app/favicon.ico'
             },
-            // {
-            //     from: './src/app/components/**/*.html',
-            //     to: './components',
-            //     flatten: true
-            // }
         ]),
         new UglifyJsPlugin({
             test: /\.js($|\?)/i,

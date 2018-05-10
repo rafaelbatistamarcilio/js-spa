@@ -11,8 +11,8 @@ export class BaseComponent extends HTMLElement {
 
     /**
      * send a custom event with some data
-     * @param {string} eventName 
-     * @param {any} data 
+     * @param {string} eventName
+     * @param {any} data
      * @returns {void}
      */
     send(eventName, data) {
@@ -24,9 +24,9 @@ export class BaseComponent extends HTMLElement {
 
     /**
      * dispatch an event to a element identifyed by given id
-     * @param {string} elementId 
-     * @param {string} eventName 
-     * @param {any} data 
+     * @param {string} elementId
+     * @param {string} eventName
+     * @param {any} data
      */
     sendToElementById(elementId, eventName, data) {
         const element = document.getElementById(elementId);
